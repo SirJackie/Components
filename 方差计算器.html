@@ -128,7 +128,7 @@
                 bar.innerHTML += "<div class='arrayChild'>当前列表: [</div>";
                 for(var i = 0; i < list.length; i++){
                     if(i != 0){
-                        bar.innerHTML += "<div class='arrayChild'>,&nbsp;&nbsp;</div>";
+                        bar.innerHTML += "<div class='arrayChild'>,</div>";
                     }
                     bar.innerHTML += 
                         "<div class='arrayChild'>" + list[i] +
@@ -147,8 +147,9 @@
             function UpdateResultShowingBar(averange, variance){
                 // Show on the bar
                 document.getElementById("resultShowingBar").innerHTML =
-                    "平均数: " + averange + "方差: " + variance +
-                    "<div onclick='ClearResultShowingBar()' class='closeIcon' style='float:right;'><div class='closeIconChild'>x</div></div>";
+                    "<div>平均数: " + averange + "</div>" +
+                    "<div>方差: " + variance + "</div>" +
+                    "<center><div onclick='ClearResultShowingBar()' class='closeIcon''><div class='closeIconChild'>x</div></div></center>";
             }
 
             function SubmitToArray(){
@@ -211,32 +212,32 @@
             <div id="arrayShowingBar"></div>
 
             <div id="placeHolder" style="clear:both !important;">&nbsp;</div>
-            <input id="inputBar" style="width:30%;height:7vh;font-size:5vh !important;">
-            <button class="button" style="width:20%;height:7vh;font-size:5vh !important;" onclick="ClearArray()"    >清空</button>
-            <button class="button" style="width:20%;height:7vh;font-size:5vh !important;" onclick="SubmitToArray()" >提交</button>
-            <button class="button" style="width:20%;height:7vh;font-size:5vh !important;" onclick="Claculate()"     >计算</button>
+            <input id="inputBar" style="width:30%;height:7vh;font-size:4vh !important;">
+            <button class="button" style="width:20%;height:7vh;font-size:4vh !important;" onclick="ClearArray()"    >清空</button>
+            <button class="button" style="width:20%;height:7vh;font-size:4vh !important;" onclick="SubmitToArray()" >提交</button>
+            <button class="button" style="width:20%;height:7vh;font-size:4vh !important;" onclick="Claculate()"     >计算</button>
 
             <div id="resultShowingBar"></div>
 
-            <div style="padding: 1vh;">
-                <button class="button" style="width:33%" onclick="Press('1')">1</button>
-                <button class="button" style="width:32%" onclick="Press('2')">2</button>
-                <button class="button" style="width:32%" onclick="Press('3')">3</button>
+            <div style="padding: 1vh;clear: both;">
+                <button class="button" style="width:31%;" onclick="Press('1')">1</button>
+                <button class="button" style="width:31%" onclick="Press('2')">2</button>
+                <button class="button" style="width:31%" onclick="Press('3')">3</button>
             </div>
             <div style="padding: 1vh;">
-                <button class="button" style="width:33%" onclick="Press('4')">4</button>
-                <button class="button" style="width:32%" onclick="Press('5')">5</button>
-                <button class="button" style="width:32%" onclick="Press('6')">6</button>
+                <button class="button" style="width:31%" onclick="Press('4')">4</button>
+                <button class="button" style="width:31%" onclick="Press('5')">5</button>
+                <button class="button" style="width:31%" onclick="Press('6')">6</button>
             </div>
             <div style="padding: 1vh;">
-                <button class="button" style="width:33%" onclick="Press('7')">7</button>
-                <button class="button" style="width:32%" onclick="Press('8')">8</button>
-                <button class="button" style="width:32%" onclick="Press('9')">9</button>
+                <button class="button" style="width:31%" onclick="Press('7')">7</button>
+                <button class="button" style="width:31%" onclick="Press('8')">8</button>
+                <button class="button" style="width:31%" onclick="Press('9')">9</button>
             </div>
             <div style="padding: 1vh;">
-                <button class="button" style="width:33%" onclick="Press('.')">.</button>
-                <button class="button" style="width:32%" onclick="Press('0')">0</button>
-                <button class="button" style="width:32%" onclick="DeleteSingleChar()">←</button>
+                <button class="button" style="width:31%" onclick="Press('.')">.</button>
+                <button class="button" style="width:31%" onclick="Press('0')">0</button>
+                <button class="button" style="width:31%" onclick="DeleteSingleChar()">←</button>
             </div>
         </div>
     </body>
