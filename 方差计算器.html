@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html style="height:100%;">
     <head>
-        <title>计算方差</title>
+        <title>方差计算器</title>
 
         <style>
             body{
@@ -41,13 +41,12 @@
                 width: 35%;
                 border: 0;
                 margin: 0;
-                padding: 0;
+                padding: 0vh;
                 border-radius: 4vh;
                 padding-left: 1vh !important;
                 box-shadow: black;
                 font-family: SimHei, 微软雅黑; 
-                outline: none;
-                box-shadow: 0 0 2vh #aaaaaa;
+                box-shadow: 0 0 2vh #999999;
                 transition: box-shadow 0.5s;
             }
 
@@ -63,37 +62,94 @@
                 font-size: 6vh;
                 font-family: SimHei, 微软雅黑;
                 text-align: center;
+                padding:2vh;
             }
 
             #resultShowingBar{
                 font-size: 6vh;
                 font-family: SimHei, 微软雅黑;
                 text-align: center;
+                padding:2vh;
+            }
+
+            .closeIcon{
+                width:6vh;
+                height:6vh;
+                border-radius: 4vh;
+                font-size:6vh;
+                background:rgb(255, 0, 0);
+                box-shadow: 0 0 2vh #aaaaaa;
+                transition: box-shadow 0.5s;
+            }
+
+            .closeIcon:hover{
+                box-shadow: 0 0 2vh blue;
+            }
+
+            .closeIconChild{
+                position: relative;
+                top:-0.95vh;
+                color: white;
+            }
+
+            .arrayChild{
+                float:left;
+                font-size: 6vh;
             }
         </style>
 
         <script>
             var list = [];
 
-            function UpdateArrayShowingBar(){
-                // Convert the array into string
-                var str = "当前列表: [";
+            function DeleteArrayByIndex(i){
+                // alert("hi");
+                list.splice(i, 1);
+                // UpdateResultShowingBar();
+                var bar = document.getElementById("arrayShowingBar");
+                bar.innerHTML = "";
+                bar.innerHTML += "<div class='arrayChild'>当前列表: [</div>";
                 for(var i = 0; i < list.length; i++){
                     if(i != 0){
-                        str += ", ";
+                        bar.innerHTML += "<div class='arrayChild'>,&nbsp;&nbsp;</div>";
                     }
-                    str += list[i];
+                    bar.innerHTML += 
+                        "<div class='arrayChild'>" + list[i] +
+                            "<div onclick='DeleteArrayByIndex(" + i + ")' class='closeIcon' style='float:right;'>" +
+                                "<div class='closeIconChild'>x</div>" +
+                            "</div>" + 
+                        "</div>";
                 }
-                str += "]";
+                bar.innerHTML += "<div class='arrayChild'>]</div>";
+            }
 
+            function UpdateArrayShowingBar(){
                 // Show on the bar
-                document.getElementById("arrayShowingBar").innerHTML = str;
+                var bar = document.getElementById("arrayShowingBar");
+                bar.innerHTML = "";
+                bar.innerHTML += "<div class='arrayChild'>当前列表: [</div>";
+                for(var i = 0; i < list.length; i++){
+                    if(i != 0){
+                        bar.innerHTML += "<div class='arrayChild'>,&nbsp;&nbsp;</div>";
+                    }
+                    bar.innerHTML += 
+                        "<div class='arrayChild'>" + list[i] +
+                            "<div onclick='DeleteArrayByIndex(" + i + ")' class='closeIcon' style='float:right;'>" +
+                                "<div class='closeIconChild'>x</div>" +
+                            "</div>" + 
+                        "</div>";
+                }
+                bar.innerHTML += "<div class='arrayChild'>]</div>";
+            }
+
+            function ClearResultShowingBar(){
+                document.getElementById("resultShowingBar").innerHTML = "";
             }
 
             function UpdateResultShowingBar(averange, variance){
                 // Show on the bar
                 document.getElementById("resultShowingBar").innerHTML =
-                    "平均数: " + averange + "\n方差: " + variance;
+                    "平均数: " + averange + "方差: " + variance +
+                    "<div onclick='ClearResultShowingBar()' class='closeIcon' style='float:right;'><div class='closeIconChild'>x</div></div>";
             }
 
             function SubmitToArray(){
@@ -146,6 +202,7 @@
         <div class="main">
             <div id="arrayShowingBar"></div>
 
+            <div id="placeHolder" style="clear:both !important;">&nbsp;</div>
             <input id="inputBar">
             <button class="button" onclick="ClearArray()"    >清空</button>
             <button class="button" onclick="SubmitToArray()" >提交</button>
